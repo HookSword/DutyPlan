@@ -1,0 +1,56 @@
+﻿@using DutyPlan.Common.DB
+<div class="col-xs-3" style="margin-left:2px">
+    <table class="tableDms">
+        <tbody>
+            <tr>
+                <th class="thspecial">Product</th>
+                <th>TR25</th>
+                <th>TR26</th>
+                <th>TR27</th>
+                <th>TR28</th>
+                <th>TR30</th>
+                <th>TR32</th>
+                <th>TR33</th>
+            </tr>
+            <tr>
+                <td rowspan="2"><p>CPL</p></td>
+                @for (var i = 1; i < 8; i++)
+                {
+                    var id = "st" + i;
+                    <td rowspan="2" class="tdimg"><img id="@id" src="@OperationDb.GetlocationById(id)" /></td>
+                }
+                
+            </tr>
+            <tr></tr>
+            <tr>
+                <th class="thspecial">Product</th>
+                <th>TR14</th>
+                <th>TR29</th>
+                <th>TR31</th>
+                <th>Product</th>
+                <th>TR13</th>
+                <th>TR16</th>
+                <th>TR61</th>
+            </tr>
+            <tr>
+                <td rowspan="2"><p>MI</p>fixed</td>
+                @for (var i = 8; i < 11; i++)
+                {
+                    var id = "st" + i;
+                    <td rowspan="2" class="tdimg"><img id="@id" src="@OperationDb.GetlocationById(id)" /></td>
+                }
+                <td rowspan="2" class="tdimg">
+                    <p>PPL</p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Random&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td>
+                @for (var i = 11; i < 14; i++)
+                {
+                    var id = "st" + i;
+                    <td rowspan="2" class="tdimg"><img id="@id" src="@OperationDb.GetlocationById(id)" /></td>
+                }
+            </tr>
+            <tr></tr>
+        </tbody>
+    </table>
+</div>
+

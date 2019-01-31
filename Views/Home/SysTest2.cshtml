@@ -1,0 +1,49 @@
+﻿@using DutyPlan.Common.DB
+<div class="col-xs-2 dms2" style="margin-left:2px">
+    <table class="tableDms">
+        <tbody>
+            <tr>
+                <th class="thspecial">Product</th>
+                <th>TR64</th>
+                <th>TR66</th>
+                <th>TR117</th>
+                <th>TR118</th>
+            </tr>
+            <tr>
+                <td rowspan="2">
+                    <p>PPL</p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;08:45&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13:10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td>
+                @for (var i = 14; i < 18; i++)
+                {
+                    var id = "st" + i;
+                    <td rowspan="2" class="tdimg"><img id="@id" src="@OperationDb.GetlocationById(id)" /></td>
+                }
+            </tr>
+            <tr></tr>
+            <tr>
+                <th class="thspecial">Product</th>
+                <th>TR60</th>
+                <th>TR62</th>
+                <th>TR63</th>
+                <th>TR65</th>
+            </tr>
+            <tr>
+                <td rowspan="2" class="tdimg">
+                    <p>PPL</p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;08:45&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13:10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td>
+                @for (var i = 18; i < 22; i++)
+                {
+                    var id = "st" + i;
+                    <td rowspan="2" class="tdimg"><img id="@id" src="@OperationDb.GetlocationById(id)" /></td>
+                }
+            </tr>
+            <tr></tr>
+        </tbody>
+    </table>
+</div>
+
+

@@ -1,0 +1,93 @@
+﻿@using DutyPlan.Common.DB
+<div class="col-xs-5 assemblysys" style="margin-left:2px;margin-top:-72px">
+    <table class="tableDms">
+        <tbody>
+            <tr>
+                <th class="thspecial">Product</th>
+                <th>Sub</th>
+                <th colspan="2">WS1</th>
+                <th>WS2</th>
+                <th colspan="2">WS3</th>
+                <th>WS4</th>
+                <th>WS5</th>
+                <th>WS6</th>
+                <th>WS7</th>
+
+            </tr>
+            <tr>
+                <td rowspan="4">
+                    <p>CPL</p>
+                    08:45<br />
+                    12:00<br />
+                    14:30<br />
+                </td>
+                @for (var i = 1; i < 11; i++)
+                {
+                    var id = "sa" + i;
+                    <td rowspan="2" class="tdimg"><img id="@id" src="@OperationDb.GetlocationById(id)" /></td>
+                }
+            </tr>
+            <tr></tr>
+            <tr>
+                @for (var i = 11; i < 21; i++)
+                {
+                    var id = "sa" + i;
+                    <td rowspan="2" class="tdimg"><img id="@id" src="@OperationDb.GetlocationById(id)" /></td>
+                }
+            </tr>
+            <tr></tr>
+            <tr>
+                <td rowspan="4">
+                    <p style="margin-top:-4px!important">PPL</p>
+                    08:45<br />
+                    10:40<br />
+                    13:05<br />
+                    15:00<br />
+                </td>
+                @for (var i = 21; i < 31; i++)
+                {
+                    var id = "sa" + i;
+                    <td rowspan="2" class="tdimg"><img id="@id" src="@OperationDb.GetlocationById(id)" /></td>
+                }
+            </tr>
+            <tr></tr>
+            <tr>
+                @for (var i = 31; i < 41; i++)
+                {
+                    var id = "sa" + i;
+                    <td rowspan="2" class="tdimg"><img id="@id" src="@OperationDb.GetlocationById(id)" /></td>
+                }
+            </tr>
+            <tr></tr>
+            <tr>
+                <td rowspan="4">
+                    <p>APK</p>
+                    08:45<br />
+                    12:00<br />
+                    14:30<br />
+                </td>
+                @for (var i = 41; i < 47; i++)
+                {
+                    var id = "sa" + i;
+                    <td rowspan="2" class="tdimg"><img id="@id" src="@OperationDb.GetlocationById(id)" /></td>
+                }
+                <td colspan="4" class="tdimg specialTd specialTdSystem2">MUlti skill Worker <abbr style="color:#000000;float:right">@OperationDb.GetbyGroup("multiSkill") &nbsp;</abbr></td>
+            </tr>
+            <tr>
+                <td class="specialTd">CPL</td>
+                <td class="specialTd">PPL</td>
+                <td class="specialTd">EK</td>
+                <td class="specialTd"></td>
+            </tr>
+            <tr>
+                @for (var i = 47; i < 57; i++)
+                {
+                    var id = "sa" + i;
+                    <td rowspan="2" class="tdimg"><img id="@id" src="@OperationDb.GetlocationById(id)" /></td>
+                }
+            </tr>
+            <tr></tr>
+        </tbody>
+    </table>
+</div>
+

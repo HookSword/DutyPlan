@@ -1,0 +1,24 @@
+﻿@using DutyPlan.Common.DB
+<div class="col-xs-5 F1">
+    <table class="tableDms">
+        <tbody>
+            <tr>
+                <th class="thspecial"></th>
+                @for (var i = 1; i < 10; i++)
+                {
+                <th></th>
+                }
+            </tr>
+            <tr>
+                @for (var i = 1; i < 11; i++)
+                {
+                    var id = "f1" + i;
+                    <td rowspan="2" class="tdimg"><img id="@id" src="@OperationDb.GetlocationById(id)" /></td>
+                }
+            </tr>
+            <tr></tr>
+        </tbody>
+    </table>
+</div>
+
+

@@ -1,0 +1,262 @@
+﻿@using DutyPlan.Common.DB
+@using DutyPlan.Common.Extend
+
+
+<div class="bigcontainer">
+    <div class="row">
+        <div class="col-xs-3" height:100px">
+            <div><p class="dutyplantitle">Make Daily Duty Plan</p></div>
+            <div style="margin-left:2px;">
+                <img class="rectangle" src="~/Content/img/bule.jpg.png" />
+                <img class="rectangle" src="~/Content/img/yellow.jpg.png" />
+                <img class="rectangle" src="~/Content/img/green.jpg.png" />
+                <img class="rectangle" src="~/Content/img/cyan.jpg.png" />
+            </div>
+            <span id="timeNow"></span>
+        </div>
+    </div>
+    <div class="row rowspecial1">
+        <div class="col-xs-4">
+            <table class="tableicon tableicondms">
+                <thead>
+                    <tr><th>DMS Test -- Zhang Qing <abbr>@OperationDb.GetbyGroup("dmsTest")&nbsp;</abbr> </th></tr>
+                </thead>
+            </table>
+        </div>
+        <div class="col-xs-2 tco">
+            <table class="tableicon tableiconTco">
+                <thead>
+                    <tr><th>Tco -- Wu Yong Gui <abbr>@OperationDb.GetbyGroup("Tco")&nbsp;</abbr></th></tr>
+                </thead>
+            </table>
+        </div>
+        <div class="col-xs-5" style="margin-left:2px;margin-top:-72px">
+            <table class="tableicon tableiconsysAssembly">
+                <thead>
+                    <tr><th>System Assembly -- Fang Xing <abbr>@OperationDb.GetbyGroup("systemAssembly")&nbsp;</abbr></th></tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        @Html.Action("DmsTestLine", "Home")
+        @Html.Action("DmsTestLine2", "Home")
+        @Html.Action("Tco", "Home")
+        @Html.Action("SystemAssembly", "Home")
+    </div>
+    <div class="row rowspecial2">
+        <div class="col-xs-2">
+            <table class="tableicon tableicondmsmodel">
+                <thead>
+                    <tr><th>DMS Model <abbr>@OperationDb.GetbyGroup("dmsModel")&nbsp;</abbr></th></tr>
+                </thead>
+            </table>
+        </div>
+        <div class="col-xs-3 outoffice" style="margin-left:2px">
+            <table class="tableicon tableiconOutOffice">
+                <thead>
+                    <tr><th>Out of office <abbr>@OperationDb.GetbyGroup("OutOffice")&nbsp;</abbr></th></tr>
+                </thead>
+            </table>
+        </div>
+        <div class="col-xs-6" style="margin-left:2px;">
+            <table class="tableicon tableiconsystest">
+                <thead>
+                    <tr><th>System Test -- Xu Jing Jie <abbr>@OperationDb.GetbyGroup("systemTest")&nbsp;</abbr></th></tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        @Html.Action("DmsModel", "Home")
+        @Html.Action("OutOffice", "Home")
+        @Html.Action("SysTest", "Home")
+        @Html.Action("SysTest2", "Home")
+    </div>
+    <div class="row rowspecial3">
+        <div class="col-xs-2">
+            <table class="tableicon tableicondmsmodel">
+                <thead>
+                    <tr><th>Slipring Asm <abbr>@OperationDb.GetbyGroup("slipringAsm")&nbsp;</abbr></th></tr>
+                </thead>
+            </table>
+        </div>
+        <div class="col-xs-2 teamleader" style="margin-left:2px">
+            <table class="tableicon tableiconTeamLeder">
+                <thead>
+                    <tr><th>Team Leader <abbr>@OperationDb.GetbyGroup("teamLeader")&nbsp;</abbr></th></tr>
+                </thead>
+            </table>
+        </div>
+        <div class="col-xs-5 F1">
+            <table class="tableicon tableiconF1">
+                <thead>
+                    <tr><th>F1 -- Sheng Bo Chao <abbr>@OperationDb.GetbyGroup("f1s") &nbsp;</abbr></th></tr>
+                </thead>
+            </table>
+        </div>
+        <div class="col-xs-1" style="margin-left:2px;">
+            <table class="tableicon tableiconCustomization">
+                <thead>
+                    <tr><th>Customization <abbr>@OperationDb.GetbyGroup("customization") &nbsp;</abbr></th></tr>
+                </thead>
+            </table>
+        </div>
+        <div class="col-xs-1">
+            <table class="tableicon tableiconIPQC">
+                <thead>
+                    <tr><th>IPQC <abbr>@OperationDb.GetbyGroup("ipqc") &nbsp;</abbr></th></tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        @Html.Action("SlipringAsm", "Home")
+        @Html.Action("TeamLeader", "Home")
+        @Html.Action("F1", "Home")
+        @Html.Action("Customization", "Home")
+        @Html.Action("IPQC", "Home")
+    </div>
+
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body" style="height:300px!important">
+                <label for="name_search" style="margin-left:110px;margin-top:40px">Input Name： </label>
+                <input id="name_search" type="text" data-provide="typeahead" autocomplete="off">
+                <p id="betee" hidden></p>
+                <button id="cli" style="margin-left:12px">OK</button>
+                <br />
+                <p></p>
+                <br />
+                <label style="margin-left:110px;margin-top:40px">Delete the photo?</label> <button id="delpho" style="margin-left:12px">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#name_search').typeahead({
+            source: function (query, process) {
+                    var parameter = { query: query };
+                    $.post('@Url.Action("Service","Data")', parameter, function (data) {
+                        process(data);
+                    });
+             }
+        });
+    $(document).ready(function () {
+
+        $('table tr td img').click(function () {
+            $('#betee').text($(this).attr("id"));
+            var $modal = $('#myModal');
+                $modal.modal();
+            })
+        $("#cli").click(function () {
+             var id = $("#betee").text();
+             var name = $("#name_search").val();
+             var $modal = $('#your-modal');
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("PhotoChange", "Data")",
+                    data:
+                    {
+                        Id: id,
+                        DisName: name,
+                        Location: ""
+                    },
+                    success: function (data) {
+                        if (data.toString() == "Success") {
+                            window.location.reload();
+                        }
+                        else if (data.toString() == "Already") {
+                            alert("The picture already exists.");
+                        }
+                        else if (data.toString() == "Error2") {
+                            alert("No photos found.");
+                        }
+                        else if (data.toString() == "Error") {
+                            alert("No name found.Please check the name you entered.");
+                        }
+                        else if (data.toString() == "Error3") {
+                            alert("You don't have permission to operate");
+                        }
+                    },
+                    error: function () {}
+                })
+        })
+        $("#delpho").click(function () {
+                var id = $("#betee").html();
+                confirm(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("Delete", "Data")?id=" + id,
+                        data: {},
+                        success: function (data) {
+                            if (data.toString() == "Error3") {
+                                alert("You don't have permission to operate");
+                            }
+                            else { window.location.reload();}
+                        },
+                        error: function () {}
+                    })
+                }, function () {
+                });
+            })
+        $('table tr td img').mouseover(function () {
+            $(this).addClass("addtion");
+        })
+        $('table tr td img').mouseout(function () {
+            $(this).removeClass("addtion");
+        })
+    })
+
+    onload = function ciculation() {
+        showtime();
+        setInterval("showtime()", 60000);
+    }
+    function showtime() {
+        var today, hour, second, minute, year, month, date;
+        var strDate;
+        today = new Date();
+        var n_day = today.getDay();
+        switch (n_day) {
+            case 0: {
+                strDate = "Sunday";
+            } break;
+            case 1: {
+                strDate = "Monday";
+            } break;
+            case 2: {
+                strDate = "Tuesday";
+            } break;
+            case 3: {
+                strDate = "Wednesday";
+            } break;
+            case 4: {
+                strDate = "Thurday";
+            } break;
+            case 5: {
+                strDate = "Friday";
+            } break;
+            case 6: {
+                strDate = "Saturday";
+            } break;
+            case 7: {
+                strDate = "Sunday";
+            } break;
+        }
+        year = today.getYear() + 1900;
+        month = today.getMonth() + 1;
+        date = today.getDate();
+        hour = today.getHours();
+        if (hour < 10) { hour = "0" + hour; }
+        minute = today.getMinutes();
+        if (minute < 10) { minute = "0" + minute; }
+        second = today.getSeconds();
+        document.getElementById('timeNow').innerHTML = "<p class=\"p1\">" + year + "-" + month + "-" + date + "</p>" + "</br>" + "<p class=\"p2\">" + strDate + "</p >" + "</br>" + "<p class=\"p3\">" + hour + ":" + minute + "</p >";
+
+    }
+</script>
